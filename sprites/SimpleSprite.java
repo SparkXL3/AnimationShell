@@ -25,8 +25,11 @@ public class SimpleSprite implements DisplayableSprite {
 	
 	public SimpleSprite(double centerX, double centerY) {
 
-		this.centerX = centerX;
-		this.centerY = centerY;
+		//this.centerX = centerX;
+		//this.centerY = centerY;
+		
+		this.centerX = 100; 
+	    this.centerY = 100;
 		
 		if (image == null) {
 			try {

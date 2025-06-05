@@ -3,17 +3,28 @@ import java.util.ArrayList;
 public class ShellUniverse implements Universe {
 
 	private boolean complete = false;	
+	private Background background = null;
 	private DisplayableSprite player1 = null;
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
-
+	private double xCenter = 0;
+	private double yCenter = 0;
+	
 	public ShellUniverse () {
+		
+		background = new PrototypeBackground();
+		ArrayList<DisplayableSprite> barriers = ((PrototypeBackground)background).getBarriers();
+		backgrounds =new ArrayList<Background>();
+		backgrounds.add(background);
+		
+		player1 = new SimpleSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
 
 		this.setXCenter(0);
 		this.setYCenter(0);
 		player1 = new SimpleSprite(0,0);
 		sprites.add(player1);
+		sprites.addAll(barriers);
 			
 	}
 
@@ -22,17 +33,19 @@ public class ShellUniverse implements Universe {
 	}
 
 	public double getXCenter() {
-		return 0;
+		return xCenter;
 	}
 
 	public double getYCenter() {
-		return 0;
+		return yCenter;
 	}
 
 	public void setXCenter(double xCenter) {
+		this.xCenter = xCenter;
 	}
 
 	public void setYCenter(double yCenter) {
+		this.yCenter = yCenter;
 	}
 
 	public boolean isComplete() {
@@ -52,10 +65,13 @@ public class ShellUniverse implements Universe {
 	}
 
 	public boolean centerOnPlayer() {
-		return false;
+		return true;
 	}		
 
 	public void update(Animation animation, long actual_delta_time) {
+		if (KeyboardInput.getKeyboard().keyDownOnce(27)) {
+			complete = true;
+		}
 
 		for (int i = 0; i < sprites.size(); i++) {
 			DisplayableSprite sprite = sprites.get(i);
