@@ -96,19 +96,19 @@ public class SimpleSprite implements DisplayableSprite {
 		KeyboardInput keyboard = KeyboardInput.getKeyboard();
 
 		//LEFT	
-		if (keyboard.keyDown(37)) {
+		if (keyboard.keyDown(65)) {
 			velocityX = -VELOCITY;
 		}
 		//UP
-		if (keyboard.keyDown(38)) {
+		if (keyboard.keyDown(87)) {
 			velocityY = -VELOCITY;			
 		}
 		// RIGHT
-		if (keyboard.keyDown(39)) {
+		if (keyboard.keyDown(68)) {
 			velocityX += VELOCITY;
 		}
 		// DOWN
-		if (keyboard.keyDown(40)) {
+		if (keyboard.keyDown(83)) {
 			velocityY += VELOCITY;			
 		}
 
