@@ -1,10 +1,11 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class SimpleSprite implements DisplayableSprite {
+public class StahlhelmSprite implements DisplayableSprite {
 
 	private static Image image;	
 	private double centerX = 0;
@@ -15,15 +16,10 @@ public class SimpleSprite implements DisplayableSprite {
 
 	private final double VELOCITY = 200;
 
-	public SimpleSprite(double centerX, double centerY, double height, double width) {
-		this(centerX, centerY);
-		
-		this.height = height;
-		this.width = width;
-	}
+	
 
 	
-	public SimpleSprite(double centerX, double centerY) {
+	public StahlhelmSprite(double centerX, double centerY) {
 
 		//this.centerX = centerX;
 		//this.centerY = centerY;
@@ -33,7 +29,7 @@ public class SimpleSprite implements DisplayableSprite {
 		
 		if (image == null) {
 			try {
-				image = ImageIO.read(new File("res/simple-sprite.png"));
+				image = ImageIO.read(new File("res/Stahlhelm-sprite.png"));
 			}
 			catch (IOException e) {
 				System.out.println(e.toString());
@@ -87,13 +83,42 @@ public class SimpleSprite implements DisplayableSprite {
 	public boolean getDispose() {
 		return dispose;
 	}
-
+	
+	public boolean barrierIntersects(BarrierSprite barrier) {
+	    return this.getMaxX() > barrier.getMinX() && this.getMinX() < barrier.getMaxX() && this.getMaxY() > barrier.getMinY() && this.getMinY() < barrier.getMaxY();
+	}
+	
+	public boolean mineIsInside(MineSprite coin) {
+	    return this.getMinX() <= coin.getMinX() && this.getMaxX() >= coin.getMaxX() && this.getMinY() <= coin.getMinY() && this.getMaxY() >= coin.getMaxY();
+	}
+	
 	public void update(Universe universe, long actual_delta_time) {
 		
+		double deltaSeconds = actual_delta_time / 1000.0;
 		double velocityX = 0;
 		double velocityY = 0;
 		
 		KeyboardInput keyboard = KeyboardInput.getKeyboard();
+		
+		for(DisplayableSprite sprite : universe.getSprites()) {
+	        if(sprite instanceof MineSprite) {
+	            MineSprite coin = (MineSprite) sprite;
+	            if(this.mineIsInside(coin)) {
+	               
+	              
+					coin.setDispose(true);
+	            }
+	        }
+	    }
+		
+		for(DisplayableSprite sprite : universe.getSprites()) {
+			if(sprite instanceof BarrierSprite) {
+	            BarrierSprite barrier = (BarrierSprite) sprite;
+	            if(this.barrierIntersects(barrier)) {
+	                centerX -= velocityX * deltaSeconds; 
+	                centerY -= velocityY * deltaSeconds;
+	            }
+	        } else {
 
 		//LEFT	
 		if (keyboard.keyDown(65)) {
@@ -117,7 +142,8 @@ public class SimpleSprite implements DisplayableSprite {
 		
 		double deltaY = actual_delta_time * 0.001 * velocityY;
     	this.centerY += deltaY;
-
+	        }
+		}
 	}
 
 

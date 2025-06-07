@@ -18,11 +18,11 @@ public class ShellUniverse implements Universe {
 		backgrounds =new ArrayList<Background>();
 		backgrounds.add(background);
 		
-		player1 = new SimpleSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
+		player1 = new StahlhelmSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
 
 		this.setXCenter(0);
 		this.setYCenter(0);
-		player1 = new SimpleSprite(0,0);
+		player1 = new StahlhelmSprite(0,0);
 		sprites.add(player1);
 		sprites.addAll(barriers);
 			

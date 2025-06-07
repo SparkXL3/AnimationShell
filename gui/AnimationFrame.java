@@ -451,16 +451,16 @@ public class AnimationFrame extends JFrame {
 		}
 
 		if (keyboard.keyDown(KeyboardInput.KEY_A)) {
-			screenOffsetX += 4;
+			screenOffsetX += 5;
 		}
 		if (keyboard.keyDown(KeyboardInput.KEY_D)) {
-			screenOffsetX -= 4;
+			screenOffsetX -= 5;
 		}
 		if (keyboard.keyDown(KeyboardInput.KEY_W)) {
-			screenOffsetY += 4;
+			screenOffsetY += 5;
 		}
 		if (keyboard.keyDown(KeyboardInput.KEY_S)) {
-			screenOffsetY -= 4;
+			screenOffsetY -= 5;
 		}
 		if (keyboard.keyDownOnce(KeyboardInput.KEY_P)) {
 			this.showScreenGrid = !this.showScreenGrid;

@@ -13,9 +13,10 @@ public class PrototypeBackground implements Background {
 	private int maxCols = 0;
     private int maxRows = 0;
 	
-	private Image BlueBarrier;
-	private Image PrototypeBackground;
-	private Image PrototypeItem;
+	private Image Ground;
+	private Image TrenchWallFront;
+	private Image TrenchWallVerticalLeft;
+	private Image TrenchWallVerticalRight;
 	
 	private int map[][] = null; 
 	
@@ -25,9 +26,10 @@ public class PrototypeBackground implements Background {
 
 		   
 		   try {
-	   		this.BlueBarrier = ImageIO.read(new File("res/blue-barrier.png"));
-	   		this.PrototypeBackground = ImageIO.read(new File("res/BackgroundPrototype.png"));
-	   		this.PrototypeItem = ImageIO.read(new File("res/ItemPrototype.png"));
+	   		this.Ground = ImageIO.read(new File("res/MyDirt.png"));
+	   		this.TrenchWallFront = ImageIO.read(new File("res/TrenchWallFront.png"));
+	   		this.TrenchWallVerticalLeft = ImageIO.read(new File("res/TrenchWallVertical2.png"));
+	   		this.TrenchWallVerticalRight = ImageIO.read(new File("res/TrenchWallVerticalRight.png"));
 	   	}
 	   	catch (IOException e) {
 	   	}
@@ -41,7 +43,7 @@ public class PrototypeBackground implements Background {
 			ArrayList<DisplayableSprite> barriers = new ArrayList<DisplayableSprite>();
 			for(int col = 0; col < map[0].length; col++) {
 				for(int row = 0; row < map.length; row++) {
-					if(map[row][col] == 0) {
+					if(map[row][col] == 1 || map[row][col] == 2 || map[row][col] == 3) {
 						barriers.add(new BarrierSprite(col * TILE_WIDTH, row * TILE_HEIGHT, (col + 1) * TILE_WIDTH, (row + 1) * TILE_HEIGHT, false));
 					}
 				}
@@ -55,11 +57,13 @@ Image image = null;
 		if(row < 0 || row > maxRows || col < 0 || col > maxCols) {
 			image = null;
 		} else if(map[row][col] == 0) {
-			image = BlueBarrier;
+			image = Ground;
 		} else if(map[row][col] == 1) {
-			image = PrototypeBackground;
+			image = TrenchWallFront;
 		} else if(map[row][col] == 2) {
-			image = PrototypeItem;
+			image = TrenchWallVerticalLeft;
+		} else if(map[row][col] == 3) {
+			image = TrenchWallVerticalRight;
 		} else {
 			image = null;
 		}
