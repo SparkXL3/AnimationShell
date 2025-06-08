@@ -5,6 +5,7 @@ public class ShellUniverse implements Universe {
 	private boolean complete = false;	
 	private Background background = null;
 	private DisplayableSprite player1 = null;
+	private DisplayableSprite Mine1 = null;
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
@@ -18,13 +19,22 @@ public class ShellUniverse implements Universe {
 		backgrounds =new ArrayList<Background>();
 		backgrounds.add(background);
 		
-		player1 = new StahlhelmSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
+		//player1 = new StahlhelmSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
 
 		this.setXCenter(0);
 		this.setYCenter(0);
+		
 		player1 = new StahlhelmSprite(0,0);
+		Mine1 = new MineSprite(100, 400);
+		
+		System.out.println("Sprites count: " + sprites.size());
 		sprites.add(player1);
+		System.out.println("Sprites count after player: " + sprites.size());
+		sprites.add(Mine1);
+		System.out.println("Sprites count after mine: " + sprites.size());
 		sprites.addAll(barriers);
+		System.out.println("Sprites count after barriers: " + sprites.size());
+		
 			
 	}
 
@@ -53,7 +63,7 @@ public class ShellUniverse implements Universe {
 	}
 
 	public void setComplete(boolean complete) {
-		complete = true;
+		this.complete = complete;
 	}
 
 	public ArrayList<Background> getBackgrounds() {

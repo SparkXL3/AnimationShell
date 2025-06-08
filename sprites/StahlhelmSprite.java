@@ -15,7 +15,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private boolean dispose = false;	
 
 	private final double VELOCITY = 200;
-
+	private double health = 100;
 	
 
 	
@@ -83,13 +83,19 @@ public class StahlhelmSprite implements DisplayableSprite {
 	public boolean getDispose() {
 		return dispose;
 	}
-	
+	public double getHealth() {
+		return health;
+	}
+
+	public void setHealth(double health) {
+		this.health = health;
+	}
 	public boolean barrierIntersects(BarrierSprite barrier) {
 	    return this.getMaxX() > barrier.getMinX() && this.getMinX() < barrier.getMaxX() && this.getMaxY() > barrier.getMinY() && this.getMinY() < barrier.getMaxY();
 	}
 	
-	public boolean mineIsInside(MineSprite coin) {
-	    return this.getMinX() <= coin.getMinX() && this.getMaxX() >= coin.getMaxX() && this.getMinY() <= coin.getMinY() && this.getMaxY() >= coin.getMaxY();
+	public boolean mineIsInside(MineSprite mine) {
+	    return this.getMinX() <= mine.getMinX() && this.getMaxX() >= mine.getMaxX() && this.getMinY() <= mine.getMinY() && this.getMaxY() >= mine.getMaxY();
 	}
 	
 	public void update(Universe universe, long actual_delta_time) {
@@ -100,41 +106,34 @@ public class StahlhelmSprite implements DisplayableSprite {
 		
 		KeyboardInput keyboard = KeyboardInput.getKeyboard();
 		
-		for(DisplayableSprite sprite : universe.getSprites()) {
-	        if(sprite instanceof MineSprite) {
-	            MineSprite coin = (MineSprite) sprite;
-	            if(this.mineIsInside(coin)) {
-	               
-	              
-					coin.setDispose(true);
-	            }
-	        }
-	    }
-		
-		for(DisplayableSprite sprite : universe.getSprites()) {
+		if(health <= 0) {
+			centerX -= velocityX * deltaSeconds; 
+            centerY -= velocityY * deltaSeconds;
+		} else for(DisplayableSprite sprite : universe.getSprites()) {
 			if(sprite instanceof BarrierSprite) {
 	            BarrierSprite barrier = (BarrierSprite) sprite;
 	            if(this.barrierIntersects(barrier)) {
 	                centerX -= velocityX * deltaSeconds; 
 	                centerY -= velocityY * deltaSeconds;
+	                
 	            }
 	        } else {
 
 		//LEFT	
-		if (keyboard.keyDown(65)) {
+		if (keyboard.keyDown(37)) {
 			velocityX = -VELOCITY;
 		}
 		//UP
-		if (keyboard.keyDown(87)) {
+		if (keyboard.keyDown(38)) {
 			velocityY = -VELOCITY;			
 		}
 		// RIGHT
-		if (keyboard.keyDown(68)) {
-			velocityX += VELOCITY;
+		if (keyboard.keyDown(39)) {
+			velocityX = +VELOCITY;
 		}
 		// DOWN
-		if (keyboard.keyDown(83)) {
-			velocityY += VELOCITY;			
+		if (keyboard.keyDown(40)) {
+			velocityY = +VELOCITY;			
 		}
 
 		double deltaX = actual_delta_time * 0.001 * velocityX;
@@ -143,7 +142,26 @@ public class StahlhelmSprite implements DisplayableSprite {
 		double deltaY = actual_delta_time * 0.001 * velocityY;
     	this.centerY += deltaY;
 	        }
+			
 		}
+		
+	
+	 for(DisplayableSprite sprite : universe.getSprites()) { 
+		 if(sprite instanceof MineSprite) { MineSprite mine = (MineSprite) sprite;
+		 if(this.mineIsInside(mine)) {
+	 
+	 //System.out.println("Sprites list size before disposal: " +
+	 //universe.getSprites().size());
+	 
+	 mine.setDispose(true); 
+	 //health -= 100;
+	 
+	// System.out.println("Sprites list size after disposal: " +
+	// universe.getSprites().size()); 
+	 		} 
+	 	} 
+	 }
+	 
 	}
 
 

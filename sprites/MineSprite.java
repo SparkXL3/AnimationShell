@@ -18,7 +18,7 @@ public class MineSprite implements DisplayableSprite {
 		
 		if (image == null && visible) {
 			try {
-				image = ImageIO.read(new File("res/coin.png"));
+				image = ImageIO.read(new File("res/Mine.png"));
 				System.out.println(this.getClass().toString());
 			}
 			catch (IOException e) {
