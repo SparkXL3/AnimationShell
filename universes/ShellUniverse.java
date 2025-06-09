@@ -36,9 +36,7 @@ public class ShellUniverse implements Universe {
 		sprites.add(player1);
 		
 		sprites.add(Mine1);
-		sprites.add(Mine2);
-		sprites.add(Mine3);
-		sprites.add(Mine4);
+	
 		
 		sprites.addAll(barriers);
 			

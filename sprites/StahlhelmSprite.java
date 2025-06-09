@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -99,71 +100,77 @@ public class StahlhelmSprite implements DisplayableSprite {
 	}
 	
 	public void update(Universe universe, long actual_delta_time) {
-		
-		double deltaSeconds = actual_delta_time / 1000.0;
+
+		//double deltaSeconds = actual_delta_time / 1000.0;
+
+		KeyboardInput keyboard = KeyboardInput.getKeyboard();
+
 		double velocityX = 0;
 		double velocityY = 0;
-		
-		KeyboardInput keyboard = KeyboardInput.getKeyboard();
-		
-		if(health <= 0) {
-			centerX -= velocityX * deltaSeconds; 
-            centerY -= velocityY * deltaSeconds;
-		} else for(DisplayableSprite sprite : universe.getSprites()) {
-			if(sprite instanceof BarrierSprite) {
-	            BarrierSprite barrier = (BarrierSprite) sprite;
-	            if(this.barrierIntersects(barrier)) {
-	                centerX -= velocityX * deltaSeconds; 
-	                centerY -= velocityY * deltaSeconds;
-	                
-	            }
-	        } else {
 
-		//LEFT	
-		if (keyboard.keyDown(37)) {
-			velocityX = -VELOCITY;
-		}
-		//UP
-		if (keyboard.keyDown(38)) {
-			velocityY = -VELOCITY;			
-		}
-		// RIGHT
-		if (keyboard.keyDown(39)) {
-			velocityX = +VELOCITY;
-		}
-		// DOWN
-		if (keyboard.keyDown(40)) {
-			velocityY = +VELOCITY;			
+		if(health > 0) {
+			//LEFT	
+			if (keyboard.keyDown(37)) {
+				velocityX = -VELOCITY;
+			}
+			//UP
+			if (keyboard.keyDown(38)) {
+				velocityY = -VELOCITY;			
+			}
+			// RIGHT
+			if (keyboard.keyDown(39)) {
+				velocityX = +VELOCITY;
+			}
+			// DOWN
+			if (keyboard.keyDown(40)) {
+				velocityY = +VELOCITY;			
+			}
 		}
 
 		double deltaX = actual_delta_time * 0.001 * velocityX;
-        this.centerX += deltaX;
-		
 		double deltaY = actual_delta_time * 0.001 * velocityY;
-    	this.centerY += deltaY;
-	        }
-			
+
+		//collision detection
+		boolean collidingWithBarrier = checkCollisionWithBarrier(universe.getSprites(), deltaX, deltaY);
+		if (collidingWithBarrier == false) {
+			this.centerX += deltaX;
+			this.centerY += deltaY;
 		}
-		
-	
-	 for(DisplayableSprite sprite : universe.getSprites()) { 
-		 if(sprite instanceof MineSprite) { MineSprite mine = (MineSprite) sprite;
-		 if(this.mineIsInside(mine)) {
-	 
-	 //System.out.println("Sprites list size before disposal: " +
-	 //universe.getSprites().size());
-	 
-	 mine.setDispose(true); 
-	 //health -= 100;
-	 
-	// System.out.println("Sprites list size after disposal: " +
-	// universe.getSprites().size()); 
-	 		} 
-	 	} 
-	 }
-	 
+
+		//collision detection with mines
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof MineSprite) {
+				MineSprite mine = (MineSprite) sprite;
+				if(CollisionDetection.covers(this, mine)) {
+					mine.setDispose(true); 
+					health -= 100;
+				} 
+			}
+
+		}
+
 	}
 
+	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if (sprite instanceof BarrierSprite) {
+				if (CollisionDetection.overlaps(this.getMinX() + deltaX, this.getMinY() + deltaY, 
+						this.getMaxX()  + deltaX, this.getMaxY() + deltaY, 
+						sprite.getMinX(),sprite.getMinY(), 
+						sprite.getMaxX(), sprite.getMaxY())) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
+
+	
 
 	@Override
 	public void setDispose(boolean dispose) {
