@@ -6,6 +6,9 @@ public class ShellUniverse implements Universe {
 	private Background background = null;
 	private DisplayableSprite player1 = null;
 	private DisplayableSprite Mine1 = null;
+	private DisplayableSprite Mine2 = null;
+	private DisplayableSprite Mine3 = null;
+	private DisplayableSprite Mine4 = null;
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
@@ -26,15 +29,18 @@ public class ShellUniverse implements Universe {
 		
 		player1 = new StahlhelmSprite(0,0);
 		Mine1 = new MineSprite(100, 400);
+		Mine2 = new MineSprite(100, 350);
+		Mine3 = new MineSprite(100, 300);
+		Mine4 = new MineSprite(100, 250);
 		
-		System.out.println("Sprites count: " + sprites.size());
 		sprites.add(player1);
-		System.out.println("Sprites count after player: " + sprites.size());
-		sprites.add(Mine1);
-		System.out.println("Sprites count after mine: " + sprites.size());
-		sprites.addAll(barriers);
-		System.out.println("Sprites count after barriers: " + sprites.size());
 		
+		sprites.add(Mine1);
+		sprites.add(Mine2);
+		sprites.add(Mine3);
+		sprites.add(Mine4);
+		
+		sprites.addAll(barriers);
 			
 	}
 
@@ -83,6 +89,7 @@ public class ShellUniverse implements Universe {
 			complete = true;
 		}
 
+		// problem stems from here?
 		for (int i = 0; i < sprites.size(); i++) {
 			DisplayableSprite sprite = sprites.get(i);
 			sprite.update(this, actual_delta_time);

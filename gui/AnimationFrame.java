@@ -42,7 +42,7 @@ public class AnimationFrame extends JFrame {
 	protected int screenOffsetY = screenHeight / 2;
 
 	protected boolean showScreenGrid = false;
-	protected boolean showLogicalGrid = true;
+	protected boolean showLogicalGrid = false;
 	protected boolean displayTiming = false;
 
 	//scale at which to render the universe. When 1, each logical unit represents 1 pixel in both x and y dimension
