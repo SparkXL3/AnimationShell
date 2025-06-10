@@ -14,6 +14,9 @@ public class ShellUniverse implements Universe {
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
 	private double xCenter = 0;
 	private double yCenter = 0;
+	private double centerX;
+	private double centerY;
+	private static final double SMOOTHING_FACTOR = 0.03;
 	
 	public ShellUniverse () {
 		
@@ -47,11 +50,13 @@ public class ShellUniverse implements Universe {
 	}
 
 	public double getXCenter() {
-		return xCenter;
+		//return xCenter;
+		return this.centerX;
 	}
 
 	public double getYCenter() {
-		return yCenter;
+		//return yCenter;
+		return this.centerY;
 	}
 
 	public void setXCenter(double xCenter) {
@@ -87,11 +92,16 @@ public class ShellUniverse implements Universe {
 			complete = true;
 		}
 
-		// problem stems from here?
 		for (int i = 0; i < sprites.size(); i++) {
 			DisplayableSprite sprite = sprites.get(i);
 			sprite.update(this, actual_delta_time);
     	} 
+		
+		 double playerX = player1.getCenterX();
+	        double playerY = player1.getCenterY();
+	        
+	        this.centerX += (playerX - this.centerX) * SMOOTHING_FACTOR; 
+	        this.centerY += (playerY - this.centerY) * SMOOTHING_FACTOR; 
 		
 		disposeSprites();
 		

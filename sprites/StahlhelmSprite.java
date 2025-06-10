@@ -91,6 +91,11 @@ public class StahlhelmSprite implements DisplayableSprite {
 	public void setHealth(double health) {
 		this.health = health;
 	}
+	
+	public boolean centerOnPlayer() {
+		return true;
+	}
+	
 	public boolean barrierIntersects(BarrierSprite barrier) {
 	    return this.getMaxX() > barrier.getMinX() && this.getMinX() < barrier.getMaxX() && this.getMaxY() > barrier.getMinY() && this.getMinY() < barrier.getMaxY();
 	}
