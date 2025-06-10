@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class StahlhelmSprite implements DisplayableSprite {
 
@@ -130,6 +131,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 			if (keyboard.keyDown(40)) {
 				velocityY = +VELOCITY;			
 			}
+		} else {
+		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0, null);	
 		}
 
 		double deltaX = actual_delta_time * 0.001 * velocityX;
