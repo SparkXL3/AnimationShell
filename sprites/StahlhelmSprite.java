@@ -17,6 +17,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private boolean dispose = false;	
 
 	private final double VELOCITY = 200;
+	private double speedChange = 0;
 	private double health = 100;
 	private double thirst = 100.00;
 	
@@ -125,18 +126,22 @@ public class StahlhelmSprite implements DisplayableSprite {
 			//LEFT	
 			if (keyboard.keyDown(37)) {
 				velocityX = -VELOCITY;
+				velocityX -= speedChange;
 			}
 			//UP
 			if (keyboard.keyDown(38)) {
-				velocityY = -VELOCITY;			
+				velocityY = -VELOCITY;
+				velocityY -= speedChange;
 			}
 			// RIGHT
 			if (keyboard.keyDown(39)) {
 				velocityX = +VELOCITY;
+				velocityX += speedChange;
 			}
 			// DOWN
 			if (keyboard.keyDown(40)) {
-				velocityY = +VELOCITY;			
+				velocityY = +VELOCITY;
+				velocityY += speedChange;
 			}
 		} else {
 		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0);
@@ -162,9 +167,27 @@ public class StahlhelmSprite implements DisplayableSprite {
 					health -= 100;
 				} 
 			}
-
 		}
 
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof UnexplodedOrdnanceSprite) {
+				UnexplodedOrdnanceSprite UnexplodedOrdnance = (UnexplodedOrdnanceSprite) sprite;
+				if(CollisionDetection.overlaps(this, UnexplodedOrdnance)) {
+					UnexplodedOrdnance.setDispose(true); 
+					health -= 50;
+				} 
+			}
+		}
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof RumSprite) {
+				RumSprite Rum = (RumSprite) sprite;
+				if(CollisionDetection.covers(this, Rum)) {
+					Rum.setDispose(true); 
+					health -= 10;
+					speedChange += 50;
+				} 
+			}
+		}
 	}
 
 	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {

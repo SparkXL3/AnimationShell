@@ -17,6 +17,7 @@ public class PrototypeBackground implements Background {
 	private Image TrenchWallFront;
 	private Image TrenchWallVerticalLeft;
 	private Image TrenchWallVerticalRight;
+	//private Image UnexplodedOrdnance;
 	
 	private int map[][] = null; 
 	
@@ -30,6 +31,7 @@ public class PrototypeBackground implements Background {
 	   		this.TrenchWallFront = ImageIO.read(new File("res/TrenchWallFront.png"));
 	   		this.TrenchWallVerticalLeft = ImageIO.read(new File("res/TrenchWallVertical2.png"));
 	   		this.TrenchWallVerticalRight = ImageIO.read(new File("res/TrenchWallVerticalRight.png"));
+	   		//this.UnexplodedOrdnance = ImageIO.read(new File("res/UnexplodedOrdnance.png"))
 	   	}
 	   	catch (IOException e) {
 	   	}
