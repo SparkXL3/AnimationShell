@@ -18,6 +18,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 
 	private final double VELOCITY = 200;
 	private double health = 100;
+	private double thirst = 100.00;
 	
 
 	
@@ -89,6 +90,10 @@ public class StahlhelmSprite implements DisplayableSprite {
 		return health;
 	}
 
+	public double getThirst() {
+		return thirst;
+	}
+
 	public void setHealth(double health) {
 		this.health = health;
 	}
@@ -106,6 +111,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 	}
 	
 	public void update(Universe universe, long actual_delta_time) {
+		
+		thirst -= 0.005;
 
 		//double deltaSeconds = actual_delta_time / 1000.0;
 
@@ -114,7 +121,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 		double velocityX = 0;
 		double velocityY = 0;
 
-		if(health > 0) {
+		if(health > 0 && thirst > 0) {
 			//LEFT	
 			if (keyboard.keyDown(37)) {
 				velocityX = -VELOCITY;
@@ -132,7 +139,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				velocityY = +VELOCITY;			
 			}
 		} else {
-		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0, null);	
+		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0);
+		System.exit(0);
 		}
 
 		double deltaX = actual_delta_time * 0.001 * velocityX;

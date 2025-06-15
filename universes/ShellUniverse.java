@@ -32,15 +32,9 @@ public class ShellUniverse implements Universe {
 		
 		player1 = new StahlhelmSprite(0,0);
 		Mine1 = new MineSprite(100, 400);
-		Mine2 = new MineSprite(100, 350);
-		Mine3 = new MineSprite(100, 300);
-		Mine4 = new MineSprite(100, 250);
-		
-		sprites.add(player1);
 		
 		sprites.add(Mine1);
-	
-		
+		sprites.add(player1);
 		sprites.addAll(barriers);
 			
 	}
@@ -73,6 +67,10 @@ public class ShellUniverse implements Universe {
 
 	public void setComplete(boolean complete) {
 		this.complete = complete;
+	}
+	
+	public StahlhelmSprite getPlayer1() {
+		return (StahlhelmSprite) this.player1;
 	}
 
 	public ArrayList<Background> getBackgrounds() {
