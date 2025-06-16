@@ -167,6 +167,15 @@ public class StahlhelmSprite implements DisplayableSprite {
 			this.centerX += deltaX;
 			this.centerY += deltaY;
 		}
+		
+		boolean collidingWithBarbedWire = checkCollisionWithBarbedWire(universe.getSprites(), deltaX, deltaY);
+		if (collidingWithBarbedWire == true) {
+			health -= 0.5;
+			if(speedChange > -50)
+				speedChange = -100;
+		} else {
+			speedChange = 0;
+		}
 
 		//collision detection with mines
 		for(DisplayableSprite sprite : universe.getSprites()) { 
@@ -216,6 +225,17 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
+//		for(DisplayableSprite sprite : universe.getSprites()) { 
+//			if(sprite instanceof BarbedWireSprite) {
+//				BarbedWireSprite BarbedWire = (BarbedWireSprite) sprite;
+//				if(CollisionDetection.overlaps(this, BarbedWire)) {
+//					//BarbedWire.setDispose(true); 
+//					health -= 1;
+//					speedChange -= 50;
+//					
+//				} 
+//			}
+//		}
 	}
 
 	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
@@ -236,6 +256,26 @@ public class StahlhelmSprite implements DisplayableSprite {
 		}		
 		return colliding;		
 	}
+	
+	private boolean checkCollisionWithBarbedWire(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if (sprite instanceof BarbedWireSprite) {
+				if (CollisionDetection.overlaps(this.getMinX() + deltaX, this.getMinY() + deltaY, 
+						this.getMaxX()  + deltaX, this.getMaxY() + deltaY, 
+						sprite.getMinX(),sprite.getMinY(), 
+						sprite.getMaxX(), sprite.getMaxY())) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
+	
 
 	
 

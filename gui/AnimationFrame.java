@@ -208,36 +208,36 @@ public class AnimationFrame extends JFrame {
 		lblBottom.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblBottom);
 		getContentPane().setComponentZOrder(lblBottom, 0);
-//		
-//		lblHealthLabel = new JLabel("Health:");
-//		lblHealthLabel.setForeground(Color.WHITE);
-//		lblHealthLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-//		getContentPane().add(lblHealthLabel);
-//		getContentPane().setComponentZOrder(lblHealthLabel, 0);
-//
-//		lblHealth = new JLabel("100");
-//		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblHealth.setOpaque(true);
-//		lblHealth.setForeground(Color.WHITE);
-//		lblHealth.setBackground(Color.red);
-//		setBarLabelBounds(this.lblHealth, 100);
-//		getContentPane().add(lblHealth);
-//		getContentPane().setComponentZOrder(lblHealth, 0);
-//		
-//		lblThirstLabel = new JLabel("Thirst:");
-//		lblThirstLabel.setForeground(Color.WHITE);
-//		lblThirstLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-//		getContentPane().add(lblThirstLabel);
-//		getContentPane().setComponentZOrder(lblThirstLabel, 0);
-//		
-//		lblThirst = new JLabel("10000");
-//		lblThirst.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblThirst.setBackground(Color.blue);
-//		lblThirst.setForeground(Color.WHITE);
-//		setBarLabelBounds(this.lblThirst, 100);
-//		lblThirst.setOpaque(true);
-//		getContentPane().add(lblThirst);
-//		getContentPane().setComponentZOrder(lblThirst, 0);
+		
+		lblHealthLabel = new JLabel("Health:");
+		lblHealthLabel.setForeground(Color.WHITE);
+		lblHealthLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		getContentPane().add(lblHealthLabel);
+		getContentPane().setComponentZOrder(lblHealthLabel, 0);
+
+		lblHealth = new JLabel("100");
+		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHealth.setOpaque(true);
+		lblHealth.setForeground(Color.WHITE);
+		lblHealth.setBackground(Color.red);
+		setBarLabelBounds(this.lblHealth, 100);
+		getContentPane().add(lblHealth);
+		getContentPane().setComponentZOrder(lblHealth, 0);
+		
+		lblThirstLabel = new JLabel("Thirst:");
+		lblThirstLabel.setForeground(Color.WHITE);
+		lblThirstLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		getContentPane().add(lblThirstLabel);
+		getContentPane().setComponentZOrder(lblThirstLabel, 0);
+		
+		lblThirst = new JLabel("10000");
+		lblThirst.setHorizontalAlignment(SwingConstants.CENTER);
+		lblThirst.setBackground(Color.blue);
+		lblThirst.setForeground(Color.WHITE);
+		setBarLabelBounds(this.lblThirst, 100);
+		lblThirst.setOpaque(true);
+		getContentPane().add(lblThirst);
+		getContentPane().setComponentZOrder(lblThirst, 0);
 
 		repositionComponents();
 	}
@@ -264,10 +264,10 @@ public class AnimationFrame extends JFrame {
 			btnPauseRun.setBounds(screenWidth - 64, 20, 48, 32);
 			lblTop.setBounds(16, 22, screenWidth - 16, 30);
 			lblBottom.setBounds(16, screenHeight - 30 - 16, screenWidth - 16, 36);
-//			lblHealthLabel.setBounds(100, screenHeight - 60, 152, 30);
-//			lblHealth.setBounds(190, screenHeight - 50, 100,14);
-//			lblThirstLabel.setBounds(100, screenHeight - 80, 152, 30);
-//			lblThirst.setBounds(190, screenHeight - 70, 100,14);		
+			lblHealthLabel.setBounds(100, screenHeight - 60, 152, 30);
+			lblHealth.setBounds(190, screenHeight - 50, 100,14);
+			lblThirstLabel.setBounds(100, screenHeight - 80, 152, 30);
+			lblThirst.setBounds(190, screenHeight - 70, 100,14);		
 		}
 			
 		
@@ -440,7 +440,7 @@ public class AnimationFrame extends JFrame {
 				//update interface
 				updateControls();
 				
-				//StahlhelmSprite Stahlhelm = ((ShellUniverse)universe).getPlayer1();
+				StahlhelmSprite Stahlhelm = ((ShellUniverse)universe).getPlayer1();
 
 				//create local copies of values from the universe. this seems to improve performance substantially
 				this.logicalCenterX = universe.getXCenter();
@@ -449,11 +449,11 @@ public class AnimationFrame extends JFrame {
 				MouseInput.logicalX = translateToLogicalX(MouseInput.screenX);
 				MouseInput.logicalY = translateToLogicalY(MouseInput.screenY);
 				
-//				this.lblHealth.setText(String.format("%3.2f", Stahlhelm.getHealth()));	
-//				setBarLabelBounds(this.lblHealth, Stahlhelm.getHealth());
-//				
-//				this.lblThirst.setText(String.format("%3.1f", Stahlhelm.getThirst()));	
-//				setBarLabelBounds(this.lblThirst, Stahlhelm.getThirst());
+				this.lblHealth.setText(String.format("%3.2f", Stahlhelm.getHealth()));	
+				setBarLabelBounds(this.lblHealth, Stahlhelm.getHealth());
+				
+				this.lblThirst.setText(String.format("%3.1f", Stahlhelm.getThirst()));	
+				setBarLabelBounds(this.lblThirst, Stahlhelm.getThirst());
 
 				this.repaint();
 

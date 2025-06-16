@@ -23,14 +23,18 @@ public class ShellUniverse implements Universe {
 		
 		background = new PrototypeBackground();
 		ArrayList<DisplayableSprite> barriers = ((PrototypeBackground)background).getBarriers();
+		ArrayList<DisplayableSprite> barbedWire = ((PrototypeBackground)background).getBarbedWire();
 		backgrounds =new ArrayList<Background>();
 		backgrounds.add(background);
+		
+		
 		
 		//player1 = new StahlhelmSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
 
 		this.setXCenter(0);
 		this.setYCenter(0);
 		
+		sprites.addAll(barbedWire);
 		player1 = new StahlhelmSprite(0,0);
 		//Mine1 = new MineSprite(100, 400);
 		//UnexplodedOrdnance1 = new UnexplodedOrdnanceSprite(100, 400);
@@ -45,6 +49,7 @@ public class ShellUniverse implements Universe {
 		sprites.add(Canteen1);
 		sprites.add(player1);
 		sprites.addAll(barriers);
+		
 			
 	}
 

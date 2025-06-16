@@ -54,6 +54,18 @@ public class PrototypeBackground implements Background {
 			}
 			return barriers;
 		}
+	 
+	 public ArrayList<DisplayableSprite> getBarbedWire() {
+			ArrayList<DisplayableSprite> barbedWire = new ArrayList<DisplayableSprite>();
+			for(int col = 0; col < map[0].length; col++) {
+				for(int row = 0; row < map.length; row++) {
+					if(map[row][col] == 4) {
+						barbedWire.add(new BarbedWireSprite(col * TILE_WIDTH, row * TILE_HEIGHT, (col + 1) * TILE_WIDTH, (row + 1) * TILE_HEIGHT, false));
+					}
+				}
+			}
+			return barbedWire;
+		}
 
 	public Tile getTile(int col, int row) {
 Image image = null;
