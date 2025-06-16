@@ -28,8 +28,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 		//this.centerX = centerX;
 		//this.centerY = centerY;
 		
-		this.centerX = 100; 
-	    this.centerY = 100;
+		this.centerX = 1100; 
+	    this.centerY = 700;
 		
 		if (image == null) {
 			try {
@@ -113,6 +113,16 @@ public class StahlhelmSprite implements DisplayableSprite {
 	
 	public void update(Universe universe, long actual_delta_time) {
 		
+		if(health > 100) {
+			double removeHealth = health - 100;
+			health -= removeHealth;
+		}
+		
+		if(thirst > 100) {
+			double removeThirst = thirst - 100;
+			thirst -= removeThirst;
+		}
+		
 		thirst -= 0.005;
 
 		//double deltaSeconds = actual_delta_time / 1000.0;
@@ -185,6 +195,24 @@ public class StahlhelmSprite implements DisplayableSprite {
 					Rum.setDispose(true); 
 					health -= 10;
 					speedChange += 50;
+				} 
+			}
+		}
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof BandageSprite) {
+				BandageSprite Bandage = (BandageSprite) sprite;
+				if(CollisionDetection.covers(this, Bandage)) {
+					Bandage.setDispose(true); 
+					health += 20;
+				} 
+			}
+		}
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof CanteenSprite) {
+				CanteenSprite Canteen = (CanteenSprite) sprite;
+				if(CollisionDetection.covers(this, Canteen)) {
+					Canteen.setDispose(true); 
+					thirst += 50;
 				} 
 			}
 		}

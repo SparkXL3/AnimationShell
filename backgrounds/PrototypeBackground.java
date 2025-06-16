@@ -17,6 +17,7 @@ public class PrototypeBackground implements Background {
 	private Image TrenchWallFront;
 	private Image TrenchWallVerticalLeft;
 	private Image TrenchWallVerticalRight;
+	private Image BarbedWire;
 	//private Image UnexplodedOrdnance;
 	
 	private int map[][] = null; 
@@ -28,14 +29,15 @@ public class PrototypeBackground implements Background {
 		   
 		   try {
 	   		this.Ground = ImageIO.read(new File("res/MyDirt.png"));
-	   		this.TrenchWallFront = ImageIO.read(new File("res/TrenchWallFront.png"));
+	   		this.TrenchWallFront = ImageIO.read(new File("res/NewTrenchWallFront.png"));
 	   		this.TrenchWallVerticalLeft = ImageIO.read(new File("res/TrenchWallVertical2.png"));
 	   		this.TrenchWallVerticalRight = ImageIO.read(new File("res/TrenchWallVerticalRight.png"));
+	   		this.BarbedWire = ImageIO.read(new File("res/BarbedWire.png"));
 	   		//this.UnexplodedOrdnance = ImageIO.read(new File("res/UnexplodedOrdnance.png"))
 	   	}
 	   	catch (IOException e) {
 	   	}
-		   maxRows = map.length - 1;
+		maxRows = map.length - 1;
 	   	maxCols = map[0].length - 1;
 	   	
 	   	
@@ -66,6 +68,8 @@ Image image = null;
 			image = TrenchWallVerticalLeft;
 		} else if(map[row][col] == 3) {
 			image = TrenchWallVerticalRight;
+		} else if(map[row][col] == 4) {
+				image = BarbedWire;
 		} else {
 			image = null;
 		}
