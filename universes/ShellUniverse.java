@@ -38,14 +38,14 @@ public class ShellUniverse implements Universe {
 		player1 = new StahlhelmSprite(0,0);
 		//Mine1 = new MineSprite(100, 400);
 		//UnexplodedOrdnance1 = new UnexplodedOrdnanceSprite(100, 400);
-		//Rum1 = new RumSprite(100, 200);
+		Rum1 = new RumSprite(1100, 1100);
 		bandage1 = new BandageSprite(100, 200);
 		Canteen1 = new CanteenSprite(100, 400);
 		
 		//sprites.add(Mine1);
 		//sprites.add(UnexplodedOrdnance1);
 		//sprites.add(Rum1);
-		sprites.add(bandage1);
+		//sprites.add(bandage1);
 		sprites.add(Canteen1);
 		sprites.add(player1);
 		sprites.addAll(barriers);

@@ -20,6 +20,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private double speedChange = 0;
 	private double health = 100;
 	private double thirst = 100.00;
+	private double rumPickedUp = 0;
 	
 
 	
@@ -94,6 +95,10 @@ public class StahlhelmSprite implements DisplayableSprite {
 	public double getThirst() {
 		return thirst;
 	}
+	
+	public double getRumPickedUp() {
+		return rumPickedUp;
+	}
 
 	public void setHealth(double health) {
 		this.health = health;
@@ -135,23 +140,27 @@ public class StahlhelmSprite implements DisplayableSprite {
 		if(health > 0 && thirst > 0) {
 			//LEFT	
 			if (keyboard.keyDown(37)) {
-				velocityX = -VELOCITY;
-				velocityX -= speedChange;
+				velocityX -= VELOCITY;
+				//velocityX -= speedChange;
+				thirst -= 0.005;
 			}
 			//UP
 			if (keyboard.keyDown(38)) {
-				velocityY = -VELOCITY;
-				velocityY -= speedChange;
+				velocityY -= VELOCITY;
+				//velocityY -= speedChange;
+				thirst -= 0.005;
 			}
 			// RIGHT
 			if (keyboard.keyDown(39)) {
 				velocityX = +VELOCITY;
-				velocityX += speedChange;
+				//velocityX += speedChange;
+				thirst -= 0.005;
 			}
 			// DOWN
 			if (keyboard.keyDown(40)) {
 				velocityY = +VELOCITY;
-				velocityY += speedChange;
+				//velocityY += speedChange;
+				thirst -= 0.005;
 			}
 		} else {
 		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0);
@@ -172,9 +181,10 @@ public class StahlhelmSprite implements DisplayableSprite {
 		if (collidingWithBarbedWire == true) {
 			health -= 0.5;
 			if(speedChange > -50)
-				speedChange = -100;
+				speedChange = -190;
 		} else {
-			speedChange = 0;
+			double boost = rumPickedUp * 50;
+			speedChange = boost;
 		}
 
 		//collision detection with mines
@@ -204,6 +214,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 					Rum.setDispose(true); 
 					health -= 10;
 					speedChange += 50;
+					rumPickedUp += 1;
 				} 
 			}
 		}
@@ -225,17 +236,6 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
-//		for(DisplayableSprite sprite : universe.getSprites()) { 
-//			if(sprite instanceof BarbedWireSprite) {
-//				BarbedWireSprite BarbedWire = (BarbedWireSprite) sprite;
-//				if(CollisionDetection.overlaps(this, BarbedWire)) {
-//					//BarbedWire.setDispose(true); 
-//					health -= 1;
-//					speedChange -= 50;
-//					
-//				} 
-//			}
-//		}
 	}
 
 	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
