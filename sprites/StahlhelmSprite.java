@@ -141,25 +141,25 @@ public class StahlhelmSprite implements DisplayableSprite {
 			//LEFT	
 			if (keyboard.keyDown(37)) {
 				velocityX -= VELOCITY;
-				//velocityX -= speedChange;
+				velocityX -= speedChange;
 				thirst -= 0.005;
 			}
 			//UP
 			if (keyboard.keyDown(38)) {
 				velocityY -= VELOCITY;
-				//velocityY -= speedChange;
+				velocityY -= speedChange;
 				thirst -= 0.005;
 			}
 			// RIGHT
 			if (keyboard.keyDown(39)) {
 				velocityX = +VELOCITY;
-				//velocityX += speedChange;
+				velocityX += speedChange;
 				thirst -= 0.005;
 			}
 			// DOWN
 			if (keyboard.keyDown(40)) {
 				velocityY = +VELOCITY;
-				//velocityY += speedChange;
+				velocityY += speedChange;
 				thirst -= 0.005;
 			}
 		} else {
