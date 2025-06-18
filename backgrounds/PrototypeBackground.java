@@ -21,6 +21,8 @@ public class PrototypeBackground implements Background {
 	private Image FrontBarbedWire;
 	private Image RightBarbedWire;
 	private Image Latter;
+	private Image TreeStump;
+	private Image ShellCrater;
 	//private Image UnexplodedOrdnance;
 	
 	private int map[][] = null; 
@@ -39,6 +41,8 @@ public class PrototypeBackground implements Background {
 	   		this.FrontBarbedWire = ImageIO.read(new File("res/SidewaysBarbedWire.png"));
 	   		this.RightBarbedWire = ImageIO.read(new File("res/UpsideDownBarbedWire.png"));
 	   		this.Latter = ImageIO.read(new File("res/Latter.png"));
+	   		this.TreeStump = ImageIO.read(new File("res/TreeStump.png"));
+	   		this.ShellCrater = ImageIO.read(new File("res/ShellCrater.png"));
 	   		//this.UnexplodedOrdnance = ImageIO.read(new File("res/UnexplodedOrdnance.png"))
 	   	}
 	   	catch (IOException e) {
@@ -53,7 +57,7 @@ public class PrototypeBackground implements Background {
 			ArrayList<DisplayableSprite> barriers = new ArrayList<DisplayableSprite>();
 			for(int col = 0; col < map[0].length; col++) {
 				for(int row = 0; row < map.length; row++) {
-					if(map[row][col] == 1 || map[row][col] == 2 || map[row][col] == 3) {
+					if(map[row][col] == 1 || map[row][col] == 2 || map[row][col] == 3 || map[row][col] == 9) {
 						barriers.add(new BarrierSprite(col * TILE_WIDTH, row * TILE_HEIGHT, (col + 1) * TILE_WIDTH, (row + 1) * TILE_HEIGHT, false));
 					}
 				}
@@ -94,6 +98,10 @@ Image image = null;
 			image = RightBarbedWire;
 		} else if(map[row][col] == 7) {
 			image = Latter;
+		} else if(map[row][col] == 8) {
+			image = TreeStump;
+		} else if(map[row][col] == 9) {
+			image = ShellCrater;
 		} else {
 			image = null;
 		}

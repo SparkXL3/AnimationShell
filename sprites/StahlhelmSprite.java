@@ -143,13 +143,13 @@ public class StahlhelmSprite implements DisplayableSprite {
 		if(health > 0 && thirst > 0) {
 			//LEFT	
 			if (keyboard.keyDown(37)) {
-				velocityX -= VELOCITY;
+				velocityX = -VELOCITY;
 				velocityX -= speedChange;
 				thirst -= 0.005;
 			}
 			//UP
 			if (keyboard.keyDown(38)) {
-				velocityY -= VELOCITY;
+				velocityY = -VELOCITY;
 				velocityY -= speedChange;
 				thirst -= 0.005;
 			}

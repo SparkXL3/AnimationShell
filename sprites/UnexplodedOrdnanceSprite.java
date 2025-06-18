@@ -18,7 +18,7 @@ public class UnexplodedOrdnanceSprite implements DisplayableSprite {
 		
 		if (image == null && visible) {
 			try {
-				image = ImageIO.read(new File("res/UnexplodedOrdnance.png"));
+				image = ImageIO.read(new File("res/NewUnexplodedOrdnance.png"));
 				System.out.println(this.getClass().toString());
 			}
 			catch (IOException e) {

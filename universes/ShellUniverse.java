@@ -7,6 +7,8 @@ public class ShellUniverse implements Universe {
 	private DisplayableSprite player1 = null;
 	private DisplayableSprite Mine1 = null;
 	private DisplayableSprite UnexplodedOrdnance1 = null;
+	private DisplayableSprite UnexplodedOrdnance2 = null;
+	private DisplayableSprite UnexplodedOrdnance3 = null;
 	private DisplayableSprite Rum1 = null;
 	private DisplayableSprite bandage1 = null;
 	private DisplayableSprite Canteen1 = null;
@@ -36,16 +38,20 @@ public class ShellUniverse implements Universe {
 		
 		sprites.addAll(barbedWire);
 		player1 = new StahlhelmSprite(0,0);
-		//Mine1 = new MineSprite(100, 400);
-		//UnexplodedOrdnance1 = new UnexplodedOrdnanceSprite(100, 400);
-		Rum1 = new RumSprite(1100, 1100);
-		bandage1 = new BandageSprite(100, 200);
-		Canteen1 = new CanteenSprite(100, 400);
+		Mine1 = new MineSprite(100, 400);
+		UnexplodedOrdnance1 = new UnexplodedOrdnanceSprite(2350, 6600);
+		UnexplodedOrdnance2 = new UnexplodedOrdnanceSprite(2400, 6650);
+		UnexplodedOrdnance3 = new UnexplodedOrdnanceSprite(2400, 6750);
+		Rum1 = new RumSprite(1800, 8200);
+		bandage1 = new BandageSprite(4000, 1250);
+		Canteen1 = new CanteenSprite(2000, 6100);
 		
-		//sprites.add(Mine1);
-		//sprites.add(UnexplodedOrdnance1);
-		//sprites.add(Rum1);
-		//sprites.add(bandage1);
+		sprites.add(Mine1);
+		sprites.add(UnexplodedOrdnance1);
+		sprites.add(UnexplodedOrdnance2);
+		sprites.add(UnexplodedOrdnance3);
+		sprites.add(Rum1);
+		sprites.add(bandage1);
 		sprites.add(Canteen1);
 		sprites.add(player1);
 		sprites.addAll(barriers);
@@ -112,8 +118,8 @@ public class ShellUniverse implements Universe {
 		 double playerX = player1.getCenterX();
 	        double playerY = player1.getCenterY();
 	        
-	        this.centerX += (playerX - this.centerX) * SMOOTHING_FACTOR; 
-	        this.centerY += (playerY - this.centerY) * SMOOTHING_FACTOR; 
+	        this.centerX += (playerX - this.centerX);
+	        this.centerY += (playerY - this.centerY); 
 		
 		disposeSprites();
 		
