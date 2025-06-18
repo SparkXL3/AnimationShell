@@ -32,6 +32,9 @@ public class StahlhelmSprite implements DisplayableSprite {
 		this.centerX = 1100; 
 	    this.centerY = 700;
 		
+		//this.centerX = 100; 
+	    //this.centerY = 100;
+		
 		if (image == null) {
 			try {
 				image = ImageIO.read(new File("res/Stahlhelm-sprite.png"));

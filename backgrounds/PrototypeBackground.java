@@ -26,7 +26,7 @@ public class PrototypeBackground implements Background {
 	private int map[][] = null; 
 	
 	 public PrototypeBackground() {
-		   int[][] background = CSVReader.importFromCSV("res/PrototypeMap.csv");
+		   int[][] background = CSVReader.importFromCSV("res/TrenchRunnerMap.csv");
 		   map = background;
 
 		   
