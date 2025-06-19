@@ -5,13 +5,45 @@ public class ShellUniverse implements Universe {
 	private boolean complete = false;	
 	private Background background = null;
 	private DisplayableSprite player1 = null;
-	private DisplayableSprite Mine1 = null;
-	private DisplayableSprite UnexplodedOrdnance1 = null;
-	private DisplayableSprite UnexplodedOrdnance2 = null;
-	private DisplayableSprite UnexplodedOrdnance3 = null;
-	private DisplayableSprite Rum1 = null;
+	private DisplayableSprite mine1 = null;
+	private DisplayableSprite mine2 = null;
+	private DisplayableSprite mine3 = null;
+	private DisplayableSprite mine4 = null;
+	private DisplayableSprite mine5 = null;
+	private DisplayableSprite mine6 = null;
+	private DisplayableSprite mine7 = null;
+	private DisplayableSprite mine8 = null;
+	private DisplayableSprite mine9 = null;
+	private DisplayableSprite mine10 = null;
+	
+	private DisplayableSprite unexplodedOrdnance1 = null;
+	private DisplayableSprite unexplodedOrdnance2 = null;
+	private DisplayableSprite unexplodedOrdnance3 = null;
+	private DisplayableSprite unexplodedOrdnance4 = null;
+	private DisplayableSprite unexplodedOrdnance5 = null;
+	private DisplayableSprite unexplodedOrdnance6 = null;
+	private DisplayableSprite unexplodedOrdnance7 = null;
+	private DisplayableSprite unexplodedOrdnance8 = null;
+	private DisplayableSprite unexplodedOrdnance9 = null;
+	private DisplayableSprite unexplodedOrdnance10 = null;
+	
+	private DisplayableSprite rum1 = null;
+	private DisplayableSprite rum2 = null;
+	
 	private DisplayableSprite bandage1 = null;
-	private DisplayableSprite Canteen1 = null;
+	private DisplayableSprite bandage2 = null;
+	private DisplayableSprite bandage3 = null;
+	private DisplayableSprite bandage4 = null;
+	private DisplayableSprite bandage5 = null;
+	
+	private DisplayableSprite canteen1 = null;
+	private DisplayableSprite canteen2 = null;
+	private DisplayableSprite canteen3 = null;
+	private DisplayableSprite canteen4 = null;
+	private DisplayableSprite canteen5 = null;
+	
+	private DisplayableSprite Officer1 = null;
+	
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
@@ -37,23 +69,89 @@ public class ShellUniverse implements Universe {
 		this.setYCenter(0);
 		
 		sprites.addAll(barbedWire);
-		player1 = new StahlhelmSprite(0,0);
-		Mine1 = new MineSprite(100, 400);
-		UnexplodedOrdnance1 = new UnexplodedOrdnanceSprite(2350, 6600);
-		UnexplodedOrdnance2 = new UnexplodedOrdnanceSprite(2400, 6650);
-		UnexplodedOrdnance3 = new UnexplodedOrdnanceSprite(2400, 6750);
-		Rum1 = new RumSprite(1800, 8200);
-		bandage1 = new BandageSprite(4000, 1250);
-		Canteen1 = new CanteenSprite(2000, 6100);
 		
-		sprites.add(Mine1);
-		sprites.add(UnexplodedOrdnance1);
-		sprites.add(UnexplodedOrdnance2);
-		sprites.add(UnexplodedOrdnance3);
-		sprites.add(Rum1);
+		player1 = new StahlhelmSprite(0,0);
+		
+		mine1 = new MineSprite(6500, 4200);
+		mine2 = new MineSprite(8250, 6400);
+		mine3 = new MineSprite(5950, 7250);
+		mine4 = new MineSprite(6350, 7000);
+		mine5 = new MineSprite(6300, 5800);
+		mine6 = new MineSprite(4300, 7400);
+		mine7 = new MineSprite(4700, 4450);
+		mine8 = new MineSprite(4650, 2500);
+		mine9 = new MineSprite(5700, 2800);
+		mine10 = new MineSprite(6150, 1700);
+		
+		unexplodedOrdnance1 = new UnexplodedOrdnanceSprite(2350, 6600);
+		unexplodedOrdnance2 = new UnexplodedOrdnanceSprite(2400, 6650);
+		unexplodedOrdnance3 = new UnexplodedOrdnanceSprite(2400, 6750);
+		unexplodedOrdnance4 = new UnexplodedOrdnanceSprite(1700, 3750);
+		unexplodedOrdnance5 = new UnexplodedOrdnanceSprite(4050, 4250);
+		unexplodedOrdnance6 = new UnexplodedOrdnanceSprite(4800, 6350);
+		unexplodedOrdnance7 = new UnexplodedOrdnanceSprite(7300, 3200);
+		unexplodedOrdnance8 = new UnexplodedOrdnanceSprite(6200, 2700);
+		unexplodedOrdnance9 = new UnexplodedOrdnanceSprite(5750, 3600);
+		unexplodedOrdnance10 = new UnexplodedOrdnanceSprite(7550, 6000);
+		
+		rum1 = new RumSprite(1800, 8200);
+		rum2 = new RumSprite(2900, 6650);
+		
+		bandage1 = new BandageSprite(4000, 1250);
+		bandage2 = new BandageSprite(7450, 2500);
+		bandage3 = new BandageSprite(7450, 4250);
+		bandage4 = new BandageSprite(6150, 2450);
+		bandage5 = new BandageSprite(6350, 8050);
+		
+		canteen1 = new CanteenSprite(2000, 6100);
+		canteen2 = new CanteenSprite(4350, 6650);
+		canteen3 = new CanteenSprite(7700, 1600);
+		canteen4 = new CanteenSprite(7750, 3900);
+		canteen5 = new CanteenSprite(6900, 3250);
+		
+		Officer1 = new OfficerSprite(8000, 3050);
+		
+		sprites.add(mine1);
+		sprites.add(mine2);
+		sprites.add(mine3);
+		sprites.add(mine4);
+		sprites.add(mine5);
+		sprites.add(mine6);
+		sprites.add(mine7);
+		sprites.add(mine8);
+		sprites.add(mine9);
+		sprites.add(mine10);
+		
+		sprites.add(unexplodedOrdnance1);
+		sprites.add(unexplodedOrdnance2);
+		sprites.add(unexplodedOrdnance3);
+		sprites.add(unexplodedOrdnance4);
+		sprites.add(unexplodedOrdnance5);
+		sprites.add(unexplodedOrdnance6);
+		sprites.add(unexplodedOrdnance7);
+		sprites.add(unexplodedOrdnance8);
+		sprites.add(unexplodedOrdnance9);
+		sprites.add(unexplodedOrdnance10);
+		
+		sprites.add(rum1);
+		sprites.add(rum2);
+		
 		sprites.add(bandage1);
-		sprites.add(Canteen1);
+		sprites.add(bandage2);
+		sprites.add(bandage3);
+		sprites.add(bandage4);
+		sprites.add(bandage5);
+		
+		sprites.add(canteen1);
+		sprites.add(canteen2);
+		sprites.add(canteen3);
+		sprites.add(canteen4);
+		sprites.add(canteen5);
+		
 		sprites.add(player1);
+		
+		sprites.add(Officer1);
+		
 		sprites.addAll(barriers);
 		
 			

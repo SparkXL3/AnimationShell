@@ -16,7 +16,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private double height = 50;
 	private boolean dispose = false;	
 
-	private final double VELOCITY = 200;
+	private final double VELOCITY = 800;
 	private double speedChange = 0;
 	private double health = 100;
 	private double thirst = 100.00;
@@ -236,6 +236,16 @@ public class StahlhelmSprite implements DisplayableSprite {
 				if(CollisionDetection.covers(this, Canteen)) {
 					Canteen.setDispose(true); 
 					thirst += 50;
+				} 
+			}
+		}
+		for(DisplayableSprite sprite : universe.getSprites()) { 
+			if(sprite instanceof OfficerSprite) {
+				OfficerSprite Officer = (OfficerSprite) sprite;
+				if(CollisionDetection.overlaps(this, Officer)) {
+					Officer.setDispose(true); 
+					JOptionPane.showMessageDialog( null, "You delivered the warplans to the frontline. Danke Schon tapferer Soldat!", "Achtung!", 1);
+					System.exit(0);
 				} 
 			}
 		}
