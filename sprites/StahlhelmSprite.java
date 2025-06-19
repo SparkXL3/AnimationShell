@@ -22,9 +22,13 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private double thirst = 100.00;
 	private double rumPickedUp = 0;
 	
+	
+	
 
 	
 	public StahlhelmSprite(double centerX, double centerY) {
+		
+		
 
 		//this.centerX = centerX;
 		//this.centerY = centerY;
@@ -42,7 +46,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 			catch (IOException e) {
 				System.out.println(e.toString());
 			}		
-		}		
+		}	
+		JOptionPane.showMessageDialog( null, "You must deliver the plans to the officer on the frontline, Für den Kaiser und das Vaterland!", "Achtung!", 2);
 	}
 
 	public Image getImage() {

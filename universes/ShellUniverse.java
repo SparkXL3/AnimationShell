@@ -42,7 +42,18 @@ public class ShellUniverse implements Universe {
 	private DisplayableSprite canteen4 = null;
 	private DisplayableSprite canteen5 = null;
 	
-	private DisplayableSprite Officer1 = null;
+	private DisplayableSprite officer1 = null;
+	
+	private DisplayableSprite soldier1 = null;
+	private DisplayableSprite soldier2 = null;
+	private DisplayableSprite soldier3 = null;
+	private DisplayableSprite soldier4 = null;
+	private DisplayableSprite soldier5 = null;
+	private DisplayableSprite soldier6 = null;
+	private DisplayableSprite soldier7 = null;
+	private DisplayableSprite soldier8 = null;
+	private DisplayableSprite soldier9 = null;
+	private DisplayableSprite soldier10 = null;
 	
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
@@ -109,7 +120,18 @@ public class ShellUniverse implements Universe {
 		canteen4 = new CanteenSprite(7750, 3900);
 		canteen5 = new CanteenSprite(6900, 3250);
 		
-		Officer1 = new OfficerSprite(8000, 3050);
+		officer1 = new OfficerSprite(8000, 3050);
+		
+		soldier1 = new SoldierSprite(7750, 1400);
+		soldier2 = new SoldierSprite(7750, 1500);
+		soldier3 = new SoldierSprite(7750, 2450);
+		soldier4 = new SoldierSprite(7750, 2800);
+		soldier5 = new SoldierSprite(8100, 3050);
+		soldier6 = new SoldierSprite(7750, 3700);
+		soldier7 = new SoldierSprite(7750, 4050);
+		soldier8 = new SoldierSprite(7750, 4400);
+		soldier9 = new SoldierSprite(7750, 5000);
+		soldier10 = new SoldierSprite(7750, 5550);
 		
 		sprites.add(mine1);
 		sprites.add(mine2);
@@ -148,9 +170,20 @@ public class ShellUniverse implements Universe {
 		sprites.add(canteen4);
 		sprites.add(canteen5);
 		
-		sprites.add(player1);
+		sprites.add(officer1);
 		
-		sprites.add(Officer1);
+		sprites.add(soldier1);
+		sprites.add(soldier2);
+		sprites.add(soldier3);
+		sprites.add(soldier4);
+		sprites.add(soldier5);
+		sprites.add(soldier6);
+		sprites.add(soldier7);
+		sprites.add(soldier8);
+		sprites.add(soldier9);
+		sprites.add(soldier10);
+		
+		sprites.add(player1);
 		
 		sprites.addAll(barriers);
 		
