@@ -65,8 +65,7 @@ public class TrenchRunnerUniverse implements Universe {
 	private double centerX;
 	private double centerY;
 	private static final double SMOOTHING_FACTOR = 0.03;
-	int cameraX = (int)Math.round(centerX);
-	int cameraY = (int)Math.round(centerY);
+	
 	
 	public TrenchRunnerUniverse () {
 		
@@ -195,12 +194,10 @@ public class TrenchRunnerUniverse implements Universe {
 	}
 
 	public double getXCenter() {
-		//return xCenter;
 		return this.centerX;
 	}
 
 	public double getYCenter() {
-		//return yCenter;
 		return this.centerY;
 	}
 

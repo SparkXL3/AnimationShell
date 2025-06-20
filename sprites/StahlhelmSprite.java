@@ -28,16 +28,9 @@ public class StahlhelmSprite implements DisplayableSprite {
 	
 	public StahlhelmSprite(double centerX, double centerY) {
 		
-		
-
-		//this.centerX = centerX;
-		//this.centerY = centerY;
-		
 		this.centerX = 1100; 
 	    this.centerY = 700;
 		
-		//this.centerX = 100; 
-	    //this.centerY = 100;
 		
 		if (image == null) {
 			try {
@@ -181,12 +174,11 @@ public class StahlhelmSprite implements DisplayableSprite {
 		boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
 		
 		//collision detection with barriers
-		boolean collidingWithBarrier = checkCollisionWithBarrier(universe.getSprites(), deltaX, deltaY);
-		if (collidingWithBarrier == false && collidingBarrierX == false) {
+		if (collidingBarrierX == false) {
 			this.centerX += deltaX;
 		}
 		
-		if (collidingWithBarrier == false && collidingBarrierY == false) {
+		if (collidingBarrierY == false) {
 			this.centerY += deltaY;
 		}
 		
