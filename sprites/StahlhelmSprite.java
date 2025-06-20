@@ -18,7 +18,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private final double VELOCITY = 200;
 	private double speedChange = 0;
 	private double health = 100;
-	private double thirst = 100.00;
+	private double thirst = 100;
 	private double rumPickedUp = 0;
 	private double bleeding = 0;
 	
