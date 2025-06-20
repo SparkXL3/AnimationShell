@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class PrototypeBackground implements Background {
+public class TrenchRunnerBackground implements Background {
 	
 	public static final int TILE_HEIGHT = 50;
 	public static final int TILE_WIDTH = 50;
@@ -23,11 +23,10 @@ public class PrototypeBackground implements Background {
 	private Image Latter;
 	private Image TreeStump;
 	private Image ShellCrater;
-	//private Image UnexplodedOrdnance;
 	
 	private int map[][] = null; 
 	
-	 public PrototypeBackground() {
+	 public TrenchRunnerBackground() {
 		   int[][] background = CSVReader.importFromCSV("res/TrenchRunnerMap.csv");
 		   map = background;
 
@@ -43,7 +42,6 @@ public class PrototypeBackground implements Background {
 	   		this.Latter = ImageIO.read(new File("res/Latter.png"));
 	   		this.TreeStump = ImageIO.read(new File("res/TreeStump.png"));
 	   		this.ShellCrater = ImageIO.read(new File("res/ShellCrater.png"));
-	   		//this.UnexplodedOrdnance = ImageIO.read(new File("res/UnexplodedOrdnance.png"))
 	   	}
 	   	catch (IOException e) {
 	   	}

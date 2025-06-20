@@ -440,7 +440,7 @@ public class AnimationFrame extends JFrame {
 				//update interface
 				updateControls();
 				
-				StahlhelmSprite Stahlhelm = ((ShellUniverse)universe).getPlayer1();
+				StahlhelmSprite Stahlhelm = ((TrenchRunnerUniverse)universe).getPlayer1();
 
 				//create local copies of values from the universe. this seems to improve performance substantially
 				this.logicalCenterX = universe.getXCenter();

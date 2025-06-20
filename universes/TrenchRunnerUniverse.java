@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class ShellUniverse implements Universe {
+public class TrenchRunnerUniverse implements Universe {
 
 	private boolean complete = false;	
 	private Background background = null;
@@ -68,16 +68,18 @@ public class ShellUniverse implements Universe {
 	int cameraX = (int)Math.round(centerX);
 	int cameraY = (int)Math.round(centerY);
 	
-	public ShellUniverse () {
+	public TrenchRunnerUniverse () {
 		
-		background = new PrototypeBackground();
-		ArrayList<DisplayableSprite> barriers = ((PrototypeBackground)background).getBarriers();
-		ArrayList<DisplayableSprite> barbedWire = ((PrototypeBackground)background).getBarbedWire();
+		background = new TrenchRunnerBackground();
+		ArrayList<DisplayableSprite> barriers = ((TrenchRunnerBackground)background).getBarriers();
+		ArrayList<DisplayableSprite> barbedWire = ((TrenchRunnerBackground)background).getBarbedWire();
 		backgrounds =new ArrayList<Background>();
 		backgrounds.add(background);
 		
 		this.setXCenter(0);
 		this.setYCenter(0);
+		
+		sprites.addAll(barbedWire);
 		
 		player1 = new StahlhelmSprite(0,0);
 		
@@ -181,10 +183,12 @@ public class ShellUniverse implements Universe {
 		sprites.add(soldier9);
 		sprites.add(soldier10);
 		
+		sprites.addAll(barriers);
 		
 		sprites.add(player1);
-		sprites.addAll(barbedWire);
-		sprites.addAll(barriers);
+		
+		//sprites.addAll(barriers);
+		
 			
 	}
 
@@ -236,7 +240,7 @@ public class ShellUniverse implements Universe {
 
 	public void update(Animation animation, long actual_delta_time) {
 		if (KeyboardInput.getKeyboard().keyDownOnce(27)) {
-			JOptionPane.showMessageDialog( null, "You could not handle the hardships of war and you deserted by fleeing the battlefield, du bist ein verräter . . .", "Achtung!", 2);
+			JOptionPane.showMessageDialog( null, "Your cowardly and traitorous self could not handle the hardships of war and you deserted by fleeing the battlefield, du bist ein verräter . . .", "Achtung!", 2);
 			complete = true;
 		}
 

@@ -165,8 +165,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 		System.exit(0);
 		}
 
-		double deltaX = (int)Math.round(actual_delta_time * 0.001 * velocityX);
-		double deltaY = (int)Math.round(actual_delta_time * 0.001 * velocityY);
+		double deltaX = actual_delta_time * 0.001 * velocityX;
+		double deltaY = actual_delta_time * 0.001 * velocityY;
 
 		//sprint
 		if (keyboard.keyDown(16)) {
@@ -175,10 +175,16 @@ public class StahlhelmSprite implements DisplayableSprite {
 			thirst -= 0.01;
 		}
 		
-		//collision detection with barriewrs
+		boolean collidingBarrierX = checkCollisionWithBarrier(universe.getSprites(), deltaX, 0);
+		boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
+		
+		//collision detection with barriers
 		boolean collidingWithBarrier = checkCollisionWithBarrier(universe.getSprites(), deltaX, deltaY);
-		if (collidingWithBarrier == false) {
+		if (collidingWithBarrier == false && collidingBarrierX == false) {
 			this.centerX += deltaX;
+		}
+		
+		if (collidingWithBarrier == false && collidingBarrierY == false) {
 			this.centerY += deltaY;
 		}
 		
@@ -188,7 +194,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 		if (collidingWithBarbedWire == true) {
 			health -= 0.5;
 			if(speedChange > -50) 
-				speedChange = -171;
+				speedChange = -190;
 		} else {
 			double boost = rumPickedUp * 50;
 			speedChange = boost;
