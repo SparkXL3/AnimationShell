@@ -129,7 +129,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 		thirst -= 0.005;
 		health -= bleeding;
 		
-
+		
 		if(health > 0 && thirst > 0) {
 			//LEFT	
 			if (keyboard.keyDown(65)) {
@@ -163,12 +163,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 		double deltaX = actual_delta_time * 0.001 * velocityX;
 		double deltaY = actual_delta_time * 0.001 * velocityY;
 
-		//sprint
-		if (keyboard.keyDown(16)) {
-			double boost = rumPickedUp * 50;
-			speedChange = 50 + boost;
-			thirst -= 0.01;
-		}
+		
 		
 		boolean collidingBarrierX = checkCollisionWithBarrier(universe.getSprites(), deltaX, 0);
 		boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
@@ -187,15 +182,19 @@ public class StahlhelmSprite implements DisplayableSprite {
 		boolean collidingWithBarbedWire = checkCollisionWithBarbedWire(universe.getSprites(), deltaX, deltaY);
 		if (collidingWithBarbedWire == true) {
 			health -= 0.5;
-			if(speedChange > -50) 
 				speedChange = -190;
 			bleeding += 0.0001;
 		} else {
 			double boost = rumPickedUp * 50;
 			speedChange = boost;
+			
+			if (keyboard.keyDown(16)) {
+				speedChange = 50 + boost;
+				thirst -= 0.01;
+				}
 			}
 		
-			
+		
 
 		//collision detection with mines
 		for(DisplayableSprite sprite : universe.getSprites()) { 
