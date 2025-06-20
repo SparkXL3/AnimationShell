@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class ShellUniverse implements Universe {
 
 	private boolean complete = false;	
@@ -63,6 +65,8 @@ public class ShellUniverse implements Universe {
 	private double centerX;
 	private double centerY;
 	private static final double SMOOTHING_FACTOR = 0.03;
+	int cameraX = (int)Math.round(centerX);
+	int cameraY = (int)Math.round(centerY);
 	
 	public ShellUniverse () {
 		
@@ -72,14 +76,8 @@ public class ShellUniverse implements Universe {
 		backgrounds =new ArrayList<Background>();
 		backgrounds.add(background);
 		
-		
-		
-		//player1 = new StahlhelmSprite(PrototypeBackground.TILE_HEIGHT * 2, PrototypeBackground.TILE_WIDTH * 2);
-
 		this.setXCenter(0);
 		this.setYCenter(0);
-		
-		sprites.addAll(barbedWire);
 		
 		player1 = new StahlhelmSprite(0,0);
 		
@@ -183,10 +181,10 @@ public class ShellUniverse implements Universe {
 		sprites.add(soldier9);
 		sprites.add(soldier10);
 		
+		
 		sprites.add(player1);
-		
+		sprites.addAll(barbedWire);
 		sprites.addAll(barriers);
-		
 			
 	}
 
@@ -238,6 +236,7 @@ public class ShellUniverse implements Universe {
 
 	public void update(Animation animation, long actual_delta_time) {
 		if (KeyboardInput.getKeyboard().keyDownOnce(27)) {
+			JOptionPane.showMessageDialog( null, "You could not handle the hardships of war and you deserted by fleeing the battlefield, du bist ein verräter . . .", "Achtung!", 2);
 			complete = true;
 		}
 
@@ -249,9 +248,9 @@ public class ShellUniverse implements Universe {
 		 double playerX = player1.getCenterX();
 	        double playerY = player1.getCenterY();
 	        
-	        this.centerX += (playerX - this.centerX);
-	        this.centerY += (playerY - this.centerY); 
-		
+	        this.centerX += (playerX - this.centerX) * SMOOTHING_FACTOR;
+	        this.centerY += (playerY - this.centerY) * SMOOTHING_FACTOR; 
+	       
 		disposeSprites();
 		
 	}

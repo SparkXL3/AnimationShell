@@ -511,18 +511,18 @@ public class AnimationFrame extends JFrame {
 			contentPane_mouseMoved(null);
 		}
 
-		if (keyboard.keyDown(KeyboardInput.KEY_A)) {
-			screenOffsetX += 4;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_D)) {
-			screenOffsetX -= 4;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_W)) {
-			screenOffsetY += 4;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_S)) {
-			screenOffsetY -= 4;
-		}
+//		if (keyboard.keyDown(KeyboardInput.KEY_A)) {
+//			screenOffsetX += 4;
+//		}
+//		if (keyboard.keyDown(KeyboardInput.KEY_D)) {
+//			screenOffsetX -= 4;
+//		}
+//		if (keyboard.keyDown(KeyboardInput.KEY_W)) {
+//			screenOffsetY += 4;
+//		}
+//		if (keyboard.keyDown(KeyboardInput.KEY_S)) {
+//			screenOffsetY -= 4;
+//		}
 		if (keyboard.keyDownOnce(KeyboardInput.KEY_P)) {
 			this.showScreenGrid = !this.showScreenGrid;
 		}

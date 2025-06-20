@@ -1,4 +1,3 @@
-import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private double height = 50;
 	private boolean dispose = false;	
 
-	private final double VELOCITY = 800;
+	private final double VELOCITY = 200;
 	private double speedChange = 0;
 	private double health = 100;
 	private double thirst = 100.00;
@@ -116,14 +115,6 @@ public class StahlhelmSprite implements DisplayableSprite {
 		return true;
 	}
 	
-	public boolean barrierIntersects(BarrierSprite barrier) {
-	    return this.getMaxX() > barrier.getMinX() && this.getMinX() < barrier.getMaxX() && this.getMaxY() > barrier.getMinY() && this.getMinY() < barrier.getMaxY();
-	}
-	
-	public boolean mineIsInside(MineSprite mine) {
-	    return this.getMinX() <= mine.getMinX() && this.getMaxX() >= mine.getMaxX() && this.getMinY() <= mine.getMinY() && this.getMaxY() >= mine.getMaxY();
-	}
-	
 	public void update(Universe universe, long actual_delta_time) {
 		
 		if(health > 100) {
@@ -135,65 +126,75 @@ public class StahlhelmSprite implements DisplayableSprite {
 			double removeThirst = thirst - 100;
 			thirst -= removeThirst;
 		}
-		
-		thirst -= 0.005;
-
-		//double deltaSeconds = actual_delta_time / 1000.0;
 
 		KeyboardInput keyboard = KeyboardInput.getKeyboard();
 
 		double velocityX = 0;
 		double velocityY = 0;
+		
+		thirst -= 0.005;
+		
 
 		if(health > 0 && thirst > 0) {
 			//LEFT	
-			if (keyboard.keyDown(37)) {
+			if (keyboard.keyDown(65)) {
 				velocityX = -VELOCITY;
 				velocityX -= speedChange;
-				thirst -= 0.005;
+				thirst -= 0.01;
 			}
 			//UP
-			if (keyboard.keyDown(38)) {
+			if (keyboard.keyDown(87)) {
 				velocityY = -VELOCITY;
 				velocityY -= speedChange;
-				thirst -= 0.005;
+				thirst -= 0.01;
 			}
 			// RIGHT
-			if (keyboard.keyDown(39)) {
+			if (keyboard.keyDown(68)) {
 				velocityX = +VELOCITY;
 				velocityX += speedChange;
-				thirst -= 0.005;
+				thirst -= 0.01;
 			}
 			// DOWN
-			if (keyboard.keyDown(40)) {
+			if (keyboard.keyDown(83)) {
 				velocityY = +VELOCITY;
 				velocityY += speedChange;
-				thirst -= 0.005;
+				thirst -= 0.01;
 			}
 		} else {
 		JOptionPane.showMessageDialog( null, "You are dead, not big suprise.", "Achtung!", 0);
 		System.exit(0);
 		}
 
-		double deltaX = actual_delta_time * 0.001 * velocityX;
-		double deltaY = actual_delta_time * 0.001 * velocityY;
+		double deltaX = (int)Math.round(actual_delta_time * 0.001 * velocityX);
+		double deltaY = (int)Math.round(actual_delta_time * 0.001 * velocityY);
 
-		//collision detection
+		//sprint
+		if (keyboard.keyDown(16)) {
+			double boost = rumPickedUp * 50;
+			speedChange = 50 + boost;
+			thirst -= 0.01;
+		}
+		
+		//collision detection with barriewrs
 		boolean collidingWithBarrier = checkCollisionWithBarrier(universe.getSprites(), deltaX, deltaY);
 		if (collidingWithBarrier == false) {
 			this.centerX += deltaX;
 			this.centerY += deltaY;
 		}
 		
+		
+		//collision detection with barbed wire
 		boolean collidingWithBarbedWire = checkCollisionWithBarbedWire(universe.getSprites(), deltaX, deltaY);
 		if (collidingWithBarbedWire == true) {
 			health -= 0.5;
-			if(speedChange > -50)
-				speedChange = -190;
+			if(speedChange > -50) 
+				speedChange = -171;
 		} else {
 			double boost = rumPickedUp * 50;
 			speedChange = boost;
-		}
+			}
+		
+			
 
 		//collision detection with mines
 		for(DisplayableSprite sprite : universe.getSprites()) { 
@@ -205,7 +206,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
-
+		
+		//collision detection with ubexplodedOrdnance
 		for(DisplayableSprite sprite : universe.getSprites()) { 
 			if(sprite instanceof UnexplodedOrdnanceSprite) {
 				UnexplodedOrdnanceSprite UnexplodedOrdnance = (UnexplodedOrdnanceSprite) sprite;
@@ -215,6 +217,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
+		
+		//collision detection with rum
 		for(DisplayableSprite sprite : universe.getSprites()) { 
 			if(sprite instanceof RumSprite) {
 				RumSprite Rum = (RumSprite) sprite;
@@ -226,6 +230,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
+		
+		//collision detection with bandages
 		for(DisplayableSprite sprite : universe.getSprites()) { 
 			if(sprite instanceof BandageSprite) {
 				BandageSprite Bandage = (BandageSprite) sprite;
@@ -235,6 +241,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
+		
+		//collision detection with canteens
 		for(DisplayableSprite sprite : universe.getSprites()) { 
 			if(sprite instanceof CanteenSprite) {
 				CanteenSprite Canteen = (CanteenSprite) sprite;
@@ -244,6 +252,8 @@ public class StahlhelmSprite implements DisplayableSprite {
 				} 
 			}
 		}
+		
+		//collision detection with the officer
 		for(DisplayableSprite sprite : universe.getSprites()) { 
 			if(sprite instanceof OfficerSprite) {
 				OfficerSprite Officer = (OfficerSprite) sprite;
