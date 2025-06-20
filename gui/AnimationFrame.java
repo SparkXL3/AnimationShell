@@ -27,7 +27,6 @@ public class AnimationFrame extends JFrame {
 	protected final int FRAMES_PER_SECOND = 60;
 	protected final long REFRESH_TIME = 1000 / FRAMES_PER_SECOND;	//MILLISECONDS
 	
-	private final double VELOCITY = 200;
 
 	// An exception to the rule above... these variables are static so that they can be referenced by the logic layer, which may
 	// want to place sprites relative to the screen boundaries

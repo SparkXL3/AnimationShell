@@ -79,8 +79,6 @@ public class TrenchRunnerUniverse implements Universe {
 		this.setXCenter(0);
 		this.setYCenter(0);
 		
-		sprites.addAll(barbedWire);
-		
 		player1 = new StahlhelmSprite(0,0);
 		
 		mine1 = new MineSprite(6500, 4200);
@@ -183,11 +181,11 @@ public class TrenchRunnerUniverse implements Universe {
 		sprites.add(soldier9);
 		sprites.add(soldier10);
 		
+		sprites.add(player1);
+		sprites.addAll(barbedWire);
 		sprites.addAll(barriers);
 		
-		sprites.add(player1);
-		
-		//sprites.addAll(barriers);
+
 		
 			
 	}
@@ -240,7 +238,7 @@ public class TrenchRunnerUniverse implements Universe {
 
 	public void update(Animation animation, long actual_delta_time) {
 		if (KeyboardInput.getKeyboard().keyDownOnce(27)) {
-			JOptionPane.showMessageDialog( null, "Your cowardly and traitorous self could not handle the hardships of war and you deserted by fleeing the battlefield, du bist ein verräter . . .", "Achtung!", 2);
+			JOptionPane.showMessageDialog( null, "You could not handle the hardships of war and you deserted by fleeing the battlefield, du bist ein verräter . . .", "Achtung!", 2);
 			complete = true;
 		}
 

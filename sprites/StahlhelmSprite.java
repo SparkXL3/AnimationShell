@@ -20,6 +20,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 	private double health = 100;
 	private double thirst = 100.00;
 	private double rumPickedUp = 0;
+	private double bleeding = 0;
 	
 	
 	
@@ -133,6 +134,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 		double velocityY = 0;
 		
 		thirst -= 0.005;
+		health -= bleeding;
 		
 
 		if(health > 0 && thirst > 0) {
@@ -195,6 +197,7 @@ public class StahlhelmSprite implements DisplayableSprite {
 			health -= 0.5;
 			if(speedChange > -50) 
 				speedChange = -190;
+			bleeding += 0.0001;
 		} else {
 			double boost = rumPickedUp * 50;
 			speedChange = boost;
